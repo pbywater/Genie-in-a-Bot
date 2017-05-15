@@ -1,5 +1,6 @@
 const connect = require('./db_connect');
-const findLocalReply = require('../helper_functions/findLocalReply');
+const construct = require('../helper_functions/answer_objects');
+const searchAnsObjects = require('../helper_functions/searchAnsObjects');
 
 const post = {};
 
@@ -16,7 +17,8 @@ post.userDetails = (userDetails, senderID, callback) => {
         }
         callback(null, res);
       });
-      findLocalReply(senderID, 'FACEBOOK_WELCOME');
+      const placeholderVotingObj = { party: null, issue: null, inFavour: null, against: null, turnout: null };
+      construct(placeholderVotingObj, null, null, null, senderID, 'FACEBOOK_WELCOME', searchAnsObjects);
     } else {
       callback(null, user);
     }
