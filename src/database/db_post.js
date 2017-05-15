@@ -1,8 +1,9 @@
 const connect = require('./db_connect');
+const checkAPIAI = require('../helper_functions/checkAPIAI');
 
 const post = {};
 
-post.userDetails = (userDetails, callback) => {
+post.userDetails = (userDetails, senderID, callback) => {
   const checkIfUserExists = 'SELECT facebook_id FROM users WHERE facebook_id = $1;';
   connect.query(checkIfUserExists, [userDetails.facebook_id], (err, user) => {
     if (err) { return callback(err); }
@@ -15,6 +16,7 @@ post.userDetails = (userDetails, callback) => {
         }
         callback(null, res);
       });
+      checkAPIAI(senderID, 'FACEBOOK_WELCOME');
     } else {
       callback(null, user);
     }

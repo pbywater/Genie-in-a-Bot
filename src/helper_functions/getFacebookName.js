@@ -17,7 +17,7 @@ function getFacebookName(facebookId, cb) {
     userDetails.facebook_id = Number(facebookId);
 
     // pushes to the database
-    post.userDetails(userDetails, (error) => {
+    post.userDetails(userDetails, facebookId, (error) => {
       if (error) {
         console.log(error);
       }
