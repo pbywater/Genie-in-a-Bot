@@ -29,8 +29,11 @@ module.exports = [
         entry.messaging.forEach((event) => {
           console.log(event);
           if (event.message) {
-            getFacebookName(event.sender.id, () => {
+            getFacebookName(event.sender.id, (newUser) => {
               console.log('theres an event.message');
+              if (newUser === 'yes') {
+                console.log('new user');
+              }
               if (event.message.attachments) {
                 if (event.message.attachments[0].payload.coordinates) {
                   const lat = JSON.stringify(event.message.attachments[0].payload.coordinates.lat);

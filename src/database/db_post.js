@@ -15,10 +15,11 @@ post.userDetails = (userDetails, senderID, callback) => {
         if (err) {
           return callback(err);
         }
-        callback(null, res);
+        const newUser = 'yes';
+        callback(null, res, newUser);
       });
-      const placeholderVotingObj = { party: null, issue: null, inFavour: null, against: null, turnout: null };
-      construct(placeholderVotingObj, null, null, null, senderID, 'FACEBOOK_WELCOME', searchAnsObjects);
+      // const placeholderVotingObj = { party: null, issue: null, inFavour: null, against: null, turnout: null };
+      // construct(placeholderVotingObj, null, null, null, senderID, 'FACEBOOK_WELCOME', searchAnsObjects);
     } else {
       callback(null, user);
     }
