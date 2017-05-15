@@ -1,5 +1,5 @@
 const connect = require('./db_connect');
-const checkAPIAI = require('../helper_functions/checkAPIAI');
+const findLocalReply = require('../helper_functions/findLocalReply');
 
 const post = {};
 
@@ -16,7 +16,7 @@ post.userDetails = (userDetails, senderID, callback) => {
         }
         callback(null, res);
       });
-      checkAPIAI(senderID, 'FACEBOOK_WELCOME');
+      findLocalReply(senderID, 'FACEBOOK_WELCOME');
     } else {
       callback(null, user);
     }
